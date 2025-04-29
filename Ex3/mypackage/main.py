@@ -1,26 +1,30 @@
+# importing our modules
 import calculator
 import shopping_cart
-#from mypackage import Shopping_cart
 
+# creating an object from calculator class
 calc = calculator.Calculator()
+
+# creating an object from shopping cart class
 cart = shopping_cart.Shopping_cart()
+
 
 print("Addition:", calc.addition(10, 5))
 print("Subtraction:", calc.subtraction(10, 5))
 print("Multiplication:", calc.multiplication(10, 5))
 print("Division:", calc.division(10, 5))
 
-# 1. Add 3 different items
+# Adding different items to the cart
 cart.add("Apples", 3)
 cart.add("Bananas", 2)
 cart.add("Bread", 1)
 
-# 2. Show items and total
+# Show items and total
 print("Cart contents:")
 cart.show_items()
 print("Total quantity:", cart.total())
 
-# 3. Remove one item
+# Remove one item
 cart.remove("Bananas")
 
 # Show updated cart
