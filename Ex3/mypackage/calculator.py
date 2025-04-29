@@ -1,7 +1,6 @@
-
+# creating a class for the 
 class Calculator:
-    def __init__(self):
-        self.num = []
+
     def addition(self,a,b):
         return a+b
 
