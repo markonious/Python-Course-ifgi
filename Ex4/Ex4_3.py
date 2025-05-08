@@ -1,30 +1,43 @@
-# Import modules
-from qgis.core import QgsVectorLayer, QgsProject
-from qgis.core import *
+import os
+from qgis.core import (
+    QgsApplication,
+    QgsProject,
+    QgsVectorLayer
+)
 
+# Set QGIS installation path
+QgsApplication.setPrefixPath(r"C:\Program Files\QGIS 3.42.1", True)  # Use raw string for path
 
-# Supply path to qgis install location
-#QgsApplication.setPrefixPath("/path/to/qgis/installation", True)
+# Initialize QGIS application
+qgs = QgsApplication([], False)
+qgs.initQgis()
 
-# Path to data and QGIS-project
-layer_path = r"C:\Users\Sven Harpering\sciebo\GIS-GK\GIS-GK_WS_23_24\GIS Data\Flughafen Muenchen - Datenlieferung I\WKA_Buffer.shp"
-project_path = r"C:\Users\Sven Harpering\meine_zweite_karte.qgz"  # for QGIS version 3+
+# Folder containing shapefiles
+folder_path = r"D:\GIS MSc\python in GIS and Arch\Python-Course-ifgi\Ex4\Muenster"  # Correct path
 
-# Create layer
-layer = QgsVectorLayer(layer_path, "WKA eingeladen", "ogr")
+# Create new QGIS project instance
+project = QgsProject.instance()
 
-# Check if layer is valid
-if not layer.isValid():
-    print("Error loading the layer!")
-else:
-    # Create QGIS instance and "open" the project
-    project = QgsProject.instance()
-    project.read(project_path)
+# Iterate through files in the folder and filter shapefiles
+for filename in os.listdir(folder_path):
+    if filename.endswith(".shp"):
+        full_path = os.path.join(folder_path, filename)
 
-    # Add layer to project
-    project.addMapLayer(layer)
+        # Get filename without extension to use as layer name
+        layer_name = os.path.splitext(os.path.basename(filename))[0]
 
-    # Save project
-    project.write()
+        # Create and validate layer
+        layer = QgsVectorLayer(full_path, layer_name, "ogr")
+        if layer.isValid():
+            project.addMapLayer(layer)
+            print(f"Added: {layer_name}")
+        else:
+            print(f"Invalid shapefile: {filename}")
 
-    print("Layer added to project\nProject saved successfully!")
+# Save the project to a new file
+project.write(r"D:\GIS MSc\python in GIS and Arch\myFirstProject.qgz")
+
+# Exit QGIS application
+qgs.exitQgis()
+
+print("All layers added. Project saved as 'myFirstProject.qgz'.")
