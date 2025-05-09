@@ -40,4 +40,4 @@ project.write(r"D:\GIS MSc\python in GIS and Arch\myFirstProject.qgz")
 # Exit QGIS application
 qgs.exitQgis()
 
-print("All layers added. Project saved as 'myFirstProject.qgz'.")
+print("All layers added")

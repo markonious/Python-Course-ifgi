@@ -12,7 +12,7 @@ for district in districts_layer.getFeatures():
     # Use spatial index to find nearby points first
     possible_ids = index.intersects(geom.boundingBox())
     
-    # Filter points actually inside the polygon
+    # Filter points inside the polygon
     count = 0
     for fid in possible_ids:
         point_feat = schools_layer.getFeature(fid)

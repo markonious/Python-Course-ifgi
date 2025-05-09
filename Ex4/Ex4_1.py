@@ -2,7 +2,7 @@ from qgis.PyQt.QtCore import QUrl
 from qgis.PyQt.QtWebKitWidgets import QWebView
 
 # Get the value of the district name 
-district_name = '[% "Stat_Name" %]'  # This dynamically gets the value from the field
+district_name = '["Stat_Name"]'  # This dynamically gets the value from the field
 
 # Format name for Wikipedia URL
 formatted_name = district_name.replace(' ', '_')

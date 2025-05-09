@@ -1,15 +1,15 @@
-# Get the Schools layer (make sure it's selected in QGIS)
+# Get the Schools layer 
 layer = iface.activeLayer()
 
-# Get only selected features
+# Get selected features
 selected_features = layer.selectedFeatures()
 
-# Set path for output CSV
+# Set path for CSV file
 output_path = "D:/GIS MSc/python is GIS/SchoolReport.csv"  # Make sure this folder exists
 
-# Open file for writing
+# Open file 
 with open(output_path, 'w', encoding='utf-8') as file:
-    # this is the header
+    
     file.write("NAME,X,Y\n")
     
     # Loop through selected features
