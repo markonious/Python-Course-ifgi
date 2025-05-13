@@ -1,5 +1,5 @@
-# creating a class for the 
-class Calculator:
+# creating a class for the  
+class Calculator:  
     # a function to add numbers
     def addition(self,a,b):
         return a+b
